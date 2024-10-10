@@ -7,6 +7,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
+    <script>
+        function new_hallgato() {
+            const row = document.querySelector("#new_hallgato");
+            row.removeAttribute("hidden");
+        }
+        function close_row() {
+            const row = document.querySelector("#new_hallgato");
+            row.setAttribute("hidden", "")
+        }
+        function update_hallgato(){
+            const update = document.querySelector("#update_hallgato");
+            const row = document.querySelector("#row");
+            update.removeAttribute("hidden");
+            row.setAttribute("hidden", "")
+        }
+        function close_update(){
+            const update = document.querySelector("#update_hallgato");
+            const row = document.querySelector("#row");
+            row.removeAttribute("hidden");
+            update.setAttribute("hidden", "")
+        }
+    </script>
 
     <title>
         Hallgatók
@@ -22,7 +44,7 @@
     </div>
 
     <div>
-        <button type="button" class="btn mb-3">
+        <button type="button" class="btn mb-3" onclick="new_hallgato()">
             <span class="material-icons">add</span> Új</button>
     </div>
 
@@ -38,16 +60,42 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr id="row">
                     <th scope="row">1</th>
                     <td>Példa Péter</td>
                     <td>ABC123</td>
                     <td><a href="../hallgato/1">3db</a></td>
                     <td>
-                        <span class="material-icons">edit</span>
-                        <span class="material-icons">delete</span>
+                        <a href="#" onclick="update_hallgato()"><span class="material-icons">edit</span></a>
+                        <a href="hallgatok/delete/1"><span class="material-icons">delete</span></a>
                     </td>
                 </tr>
+                <form action="hallgatok/update" method="post">
+                    <tr id="update_hallgato" hidden>
+                        <input type="text" name="id" value="1" hidden>
+                        <th scope="row" name="id">1</th>
+                        <td><input type="text" name="name" value="Példa Péter"></td>
+                        <td><input type="text" name="neptun" value="ABC123"></td>
+                        <td>3db</td>
+                        <td>
+                            <button class="material-icons" type="submit">check</button>
+                            <button class="material-icons" type="button" onclick="close_update()">close</button>
+                        </td>
+                    </tr>
+                </form>
+                <form action="hallgatok/add" method="post">
+                    <tr id="new_hallgato" hidden>
+                        <input type="text" name="id" value="2" hidden>
+                        <th scope="row" name="id">2</th>
+                        <td><input type="text" name="name"></td>
+                        <td><input type="text" name="neptun"></td>
+                        <td>0db</td>
+                        <td>
+                            <button class="material-icons" type="submit">check</button>
+                            <button class="material-icons" type="button" onclick="close_add()">close</button>
+                        </td>
+                    </tr>
+                </form>
             </tbody>
         </table>
     </div>

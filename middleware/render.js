@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = function (viewName) {
     /**
      * Renders a static html
@@ -7,7 +9,7 @@ module.exports = function (viewName) {
         if(JSON.stringify(req.params) !== '{}'){
             console.log(req.params);
         }
-        res.sendFile("C:\\Users\\Balint\\WebstormProjects\\hallgatok\\static\\"+viewName);
+        res.sendFile(path.join(__dirname,"..","static",viewName));
     };
 
 };
