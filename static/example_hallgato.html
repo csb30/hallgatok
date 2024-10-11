@@ -6,7 +6,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/client-side.js"></script>
 
     <title>
         Példa Péter számítógépei
@@ -25,16 +26,19 @@
     </div>
 
     <div>
-        <select class="form-select form-select-lg mb-3" aria-label="PC select">
-            <option selected>Válassz számítógépet</option>
-            <option value="1">Example PC1</option>
-            <option value="2">Example PC2</option>
-            <option value="3">Example PC3</option>
-        </select>
+        <form action="/hallgato/1/add" method="post">
+            <input type="text" name="hallgatoid" value="1" hidden>
+            <select class="form-select form-select-lg mb-3" aria-label="PC select" name="szamitogepid">
+                <option selected disabled>Válassz számítógépet</option>
+                <option value="1">Example PC1</option>
+                <option value="2">Example PC2</option>
+                <option value="3">Example PC3</option>
+            </select>
 
-        <button type="button" class="btn mb-3">
-            <span class="material-icons">add</span> Hozzáad
-        </button>
+            <button type="submit" class="btn mb-3">
+                <span class="material-icons">add</span> Hozzáad
+            </button>
+        </form>
     </div>
 
     <div>
@@ -53,7 +57,7 @@
                 <td>I3-7100</td>
                 <td>8 GB</td>
                 <td>
-                    <span class="material-icons">delete</span>
+                    <a href="/hallgato/1/delete/1"><span class="material-icons">delete</span></a>
                 </td>
             </tr>
             </tbody>

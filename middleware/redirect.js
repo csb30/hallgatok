@@ -5,6 +5,7 @@ module.exports = function (site) {
      */
 
     return function (req, res, next) {
+        console.log("redirect: "+site);
         return res.redirect(site);
     };
 

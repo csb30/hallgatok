@@ -1,9 +1,9 @@
 module.exports = function (params) {
     /**
-     * Gets list of students from db and returns it
+     * Updates a PC in the db
      */
     return function (req, res, next) {
-        console.log("getHallgatok")
+        console.log("updateSzamitogepek "+JSON.stringify(req.body));
         return next();
     };
 
