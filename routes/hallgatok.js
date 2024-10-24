@@ -18,7 +18,7 @@ module.exports = function (app) {
      */
     app.get('/hallgatok',
         getHallgatokMW(),
-        renderMW('hallgatok.html')
+        renderMW('hallgatok')
     );
 
     /**

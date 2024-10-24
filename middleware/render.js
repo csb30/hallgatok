@@ -1,4 +1,4 @@
-const path = require('path');
+//const path = require('path');
 
 module.exports = function (viewName) {
     /**
@@ -10,7 +10,8 @@ module.exports = function (viewName) {
         if(JSON.stringify(req.params) !== '{}'){
             console.log("render params" + JSON.stringify(req.params));
         }
-        res.sendFile(path.join(__dirname,"..","static",viewName));
+        //res.sendFile(path.join(__dirname,"..","static",viewName));
+        res.render(viewName,res.locals)
     };
 
 };

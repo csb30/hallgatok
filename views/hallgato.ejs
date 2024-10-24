@@ -10,7 +10,7 @@
     <script src="/client-side.js"></script>
 
     <title>
-        Példa Péter számítógépei
+        <%= filtered[0].hallgato %> számítógépei
     </title>
 </head>
 
@@ -21,13 +21,13 @@
             <a href="../hallgatok" class="passive">Hallgatók</a>    <a href="../szamitogepek" class="passive">Számítógépek</a>
         </h1>
         <h1>
-            Példa Péter számítógépei
+            <%= filtered[0].hallgato %> számítógépei
         </h1>
     </div>
 
     <div>
-        <form action="/hallgato/1/add" method="post">
-            <input type="text" name="hallgatoid" value="1" hidden>
+        <form action="/hallgato/<%= hallgatoid %>/add" method="post">
+            <input type="text" name="hallgatoid" value="<%= hallgatoid %>" hidden>
             <select class="form-select form-select-lg mb-3" aria-label="PC select" name="szamitogepid">
                 <option selected disabled>Válassz számítógépet</option>
                 <option value="1">Example PC1</option>
@@ -52,14 +52,16 @@
             </tr>
             </thead>
             <tbody>
+            <% filtered.forEach(szamitogep => { %>
             <tr>
-                <th scope="row">1</th>
-                <td>I3-7100</td>
-                <td>8 GB</td>
+                <th scope="row"><%= szamitogep.id %></th>
+                <td><%= szamitogep.cpu %></td>
+                <td><%= szamitogep.ram %> GB</td>
                 <td>
-                    <a href="/hallgato/1/delete/1"><span class="material-icons">delete</span></a>
+                    <a href="/hallgato/<%= hallgatoid %>/delete/<%= szamitogep.id %>"><span class="material-icons">delete</span></a>
                 </td>
             </tr>
+            <% }) %>
             </tbody>
         </table>
     </div>

@@ -38,33 +38,35 @@
                 </tr>
             </thead>
             <tbody>
-                <tr id="row">
-                    <th scope="row">1</th>
-                    <td>Példa Péter</td>
-                    <td>ABC123</td>
-                    <td><a href="../hallgato/1">3db</a></td>
+                <% hallgatok.forEach(hallgato => { %>
+                <tr id="row<%= hallgato.id %>">
+                    <th scope="row<%= hallgato.id %>"><%= hallgato.id %></th>
+                    <td><%= hallgato.name %></td>
+                    <td><%= hallgato.neptun %></td>
+                    <td><a href="../hallgato/<%= hallgato.id %>"><%= hallgato.szamitogep %> db</a></td>
                     <td>
-                        <a href="#" onclick="update_item()"><span class="material-icons">edit</span></a>
-                        <a href="hallgatok/delete/1"><span class="material-icons">delete</span></a>
+                        <a href="#" onclick="update_item(<%= hallgato.id %>)"><span class="material-icons">edit</span></a>
+                        <a href="hallgatok/delete/<%= hallgato.id %>"><span class="material-icons">delete</span></a>
                     </td>
                 </tr>
                 <form action="hallgatok/update" method="post">
-                    <tr id="update_item" hidden>
-                        <input type="text" name="id" value="1" hidden>
-                        <th scope="row" name="id">1</th>
-                        <td><input type="text" name="name" value="Példa Péter"></td>
-                        <td><input type="text" name="neptun" value="ABC123"></td>
-                        <td>3db</td>
+                    <tr id="update_item<%= hallgato.id %>" hidden>
+                        <input type="text" name="id" value="<%= hallgato.id %>" hidden>
+                        <th scope="row" name="id"><%= hallgato.id %></th>
+                        <td><input type="text" name="name" value="<%= hallgato.name %>"></td>
+                        <td><input type="text" name="neptun" value="<%= hallgato.neptun %>"></td>
+                        <td><%= hallgato.szamitogep %> db</td>
                         <td>
                             <button class="material-icons" type="submit">check</button>
-                            <button class="material-icons" type="button" onclick="close_update()">close</button>
+                            <button class="material-icons" type="button" onclick="close_update(<%= hallgato.id %>)">close</button>
                         </td>
                     </tr>
                 </form>
+                <% }); %>
                 <form action="hallgatok/add" method="post">
                     <tr id="new_item" hidden>
-                        <input type="text" name="id" value="2" hidden>
-                        <th scope="row" name="id">2</th>
+                        <input type="text" name="id" value="<%= hallgatok[hallgatok.length-1].id+1 %>" hidden>
+                        <th scope="new_item" name="id"><%= hallgatok[hallgatok.length-1].id+1 %></th>
                         <td><input type="text" name="name"></td>
                         <td><input type="text" name="neptun"></td>
                         <td>0db</td>

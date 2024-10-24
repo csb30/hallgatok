@@ -39,33 +39,35 @@
             </tr>
             </thead>
             <tbody>
-            <tr id="row">
-                <th scope="row">1</th>
-                <td>I3-7100</td>
-                <td>8 GB</td>
-                <td><a href="../hallgato/1">Példa Péter</a></td>
+                <% szamitogepek.forEach(szamitogep => { %>
+            <tr id="row<%= szamitogep.id %>">
+                <th scope="row<%= szamitogep.id %>"><%= szamitogep.id %></th>
+                <td><%= szamitogep.cpu %></td>
+                <td><%= szamitogep.ram %></td>
+                <td><a href="../hallgato/<%= szamitogep.id %>"><%= szamitogep.hallgato %></a></td>
                 <td>
-                    <a href="#" onclick="update_item()"><span class="material-icons">edit</span></a>
-                    <a href="szamitogepek/delete/1"><span class="material-icons">delete</span></a>
+                    <a href="#" onclick="update_item(<%= szamitogep.id %>)"><span class="material-icons">edit</span></a>
+                    <a href="szamitogepek/delete/<%= szamitogep.id %>"><span class="material-icons">delete</span></a>
                 </td>
             </tr>
             <form action="/szamitogepek/update" method="post">
-                <tr id="update_item" hidden>
-                    <input type="text" name="id" value="1" hidden>
-                    <th scope="row">1</th>
-                    <td><input type="text" name="cpu" value="I3-7100"></td>
-                    <td><input type="text" name="ram" value="8 GB"></td>
-                    <td>Példa Péter</td>
+                <tr id="update_item<%= szamitogep.id %>" hidden>
+                    <input type="text" name="id" value="<%= szamitogep.id %>" hidden>
+                    <th scope="row"><%= szamitogep.id %></th>
+                    <td><input type="text" name="cpu" value="<%= szamitogep.cpu %>"></td>
+                    <td><input type="text" name="ram" value="<%= szamitogep.ram %>"></td>
+                    <td><%= szamitogep.hallgato %></td>
                     <td>
                         <button class="material-icons" type="submit">check</button>
-                        <button class="material-icons" type="button" onclick="close_update()">close</button>
+                        <button class="material-icons" type="button" onclick="close_update(<%= szamitogep.id %>)">close</button>
                     </td>
                 </tr>
             </form>
+            <% }) %>
             <form action="/szamitogepek/add" method="post">
                 <tr id="new_item" hidden>
-                    <input type="text" name="id" value="2" hidden>
-                    <th scope="row">2</th>
+                    <input type="text" name="id" value="<%= szamitogepek[szamitogepek.length-1].id+1 %>" hidden>
+                    <th scope="new_item"><%= szamitogepek[szamitogepek.length-1].id+1 %></th>
                     <td><input type="text" name="cpu"></td>
                     <td><input type="text" name="ram"></td>
                     <td>-</td>

@@ -11,7 +11,7 @@ module.exports = function (app) {
      */
     app.get('/szamitogepek',
         getSzamitogepekMW(),
-        renderMW('szamitogepek.html')
+        renderMW('szamitogepek')
     );
 
     /**

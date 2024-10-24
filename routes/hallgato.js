@@ -11,7 +11,7 @@ module.exports = function (app) {
      */
     app.get('/hallgato/:hallgatoid',
         getHallgatoMW('hallgato==hallgatoid'),
-        renderMW('example_hallgato.html')
+        renderMW('hallgato')
     );
 
     /**
