@@ -25,6 +25,8 @@ module.exports = function (app) {
         redirectMW('/szamitogepek')
     );
 
+    
+
     /**
      * Deletes a PC from db
      */
