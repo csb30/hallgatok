@@ -3,8 +3,11 @@ var renderMW = require('../middleware/render');
 var getHallgatoMW = require('../middleware/hallgato/getHallgato')
 var deleteHallgatoSzamitogepMW = require('../middleware/hallgato/deleteHallgatoSzamitogep')
 var addHallgatoSzamitogepMW = require('../middleware/hallgato/addHallgatoSzamitogep')
+const hallgato = require('../models/hallgato');
+const szamitogep = require('../models/szamitogep');
 
 module.exports = function (app) {
+    const objRepo = {hallgato: hallgato, szamitogep: szamitogep};
     /**
      * Renders /hallgato (PCs belonging to a Student table)
      * Writes hallgatoid to console -> this will be used for query later

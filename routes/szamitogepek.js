@@ -4,8 +4,11 @@ var getSzamitogepekMW = require('../middleware/szamitogepek/getSzamitogepek');
 var addSzamitogepekMW = require('../middleware/szamitogepek/addSzamitogepek');
 var deleteSzamitogepekMW = require('../middleware/szamitogepek/deleteSzamitogepek');
 var updateSzamitogepekMW = require('../middleware/szamitogepek/updateSzamitogepek');
+const hallgato = require('../models/hallgato');
+const szamitogep = require('../models/szamitogep');
 
 module.exports = function (app) {
+    const objRepo = {hallgato: hallgato, szamitogep: szamitogep};
     /**
      * Renders /szamitogepek (PCs table)
      */
