@@ -13,7 +13,7 @@ module.exports = function (app) {
      * Writes hallgatoid to console -> this will be used for query later
      */
     app.get('/hallgato/:hallgatoid',
-        getHallgatoMW('hallgato==hallgatoid'),
+        getHallgatoMW(objRepo),
         renderMW('hallgato')
     );
 
@@ -21,19 +21,13 @@ module.exports = function (app) {
      * Deletes a PC from a hallgato (PC will still exist)
      */
     app.get('/hallgato/:hallgatoid/delete/:szamitogepid',
-        deleteHallgatoSzamitogepMW(),
-        (req, res, next) => {
-            redirectMW(`/hallgato/${req.params.hallgatoid}`);
-        }
+        deleteHallgatoSzamitogepMW(objRepo),
     );
 
     /**
      * Assigns a PC to a hallgato
      */
     app.post('/hallgato/:hallgatoid/add',
-        addHallgatoSzamitogepMW(),
-        (req, res, next) => {
-            redirectMW(`/hallgato/${req.body.hallgatoid}`);
-        }
+        addHallgatoSzamitogepMW(objRepo),
     );
 };

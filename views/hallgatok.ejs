@@ -46,7 +46,7 @@
                     <td><a href="../hallgato/<%= hallgato.id %>"><%= hallgato.szamitogep %> db</a></td>
                     <td>
                         <a href="#" onclick="update_item(<%= hallgato.id %>)"><span class="material-icons">edit</span></a>
-                        <a href="hallgatok/delete/<%= hallgato.id %>"><span class="material-icons">delete</span></a>
+                        <a href="../hallgatok/delete/<%= hallgato.id %>"><span class="material-icons">delete</span></a>
                     </td>
                 </tr>
                 <form action="hallgatok/update" method="post">
@@ -65,8 +65,8 @@
                 <% }); %>
                 <form action="hallgatok/add" method="post">
                     <tr id="new_item" hidden>
-                        <input type="text" name="id" value="<%= hallgatok[hallgatok.length-1].id+1 %>" hidden>
-                        <th scope="new_item" name="id"><%= hallgatok[hallgatok.length-1].id+1 %></th>
+                        <input type="text" name="id" value="<%= hallgatok.length > 0 ? hallgatok[hallgatok.length-1].id+1 : 1 %>" hidden>
+                        <th scope="new_item" name="id"><%= hallgatok.length > 0 ? hallgatok[hallgatok.length-1].id+1 : 1 %></th>
                         <td><input type="text" name="name"></td>
                         <td><input type="text" name="neptun"></td>
                         <td>0db</td>

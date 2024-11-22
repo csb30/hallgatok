@@ -13,7 +13,7 @@ module.exports = function (app) {
      * Renders /szamitogepek (PCs table)
      */
     app.get('/szamitogepek',
-        getSzamitogepekMW(),
+        getSzamitogepekMW(objRepo),
         renderMW('szamitogepek')
     );
 
@@ -21,7 +21,7 @@ module.exports = function (app) {
      * Adds a PC to the db
      */
     app.post('/szamitogepek/add',
-        addSzamitogepekMW(),
+        addSzamitogepekMW(objRepo),
         redirectMW('/szamitogepek')
     );
 
@@ -31,7 +31,7 @@ module.exports = function (app) {
      * Deletes a PC from db
      */
     app.get('/szamitogepek/delete/:szamitogepid',
-        deleteSzamitogepekMW(),
+        deleteSzamitogepekMW(objRepo),
         redirectMW('/szamitogepek')
     );
 
@@ -39,7 +39,7 @@ module.exports = function (app) {
      * Updates a PC in db
      */
     app.post('/szamitogepek/update',
-        updateSzamitogepekMW(),
+        addSzamitogepekMW(objRepo),
         redirectMW('/szamitogepek')
     );
 };

@@ -21,7 +21,7 @@ module.exports = function (app) {
      * Renders /hallgatok (students table)
      */
     app.get('/hallgatok',
-        getHallgatokMW(),
+        getHallgatokMW(objRepo),
         renderMW('hallgatok')
     );
 
@@ -29,7 +29,7 @@ module.exports = function (app) {
      * Adds a hallgato to the db
      */
     app.post('/hallgatok/add',
-        addHallgatokMW(),
+        addHallgatokMW(objRepo),
         redirectMW('/hallgatok')
     );
 
@@ -37,7 +37,7 @@ module.exports = function (app) {
      * Deletes a hallgato from db
      */
     app.get('/hallgatok/delete/:hallgatoid',
-        deleteHallgatokMW(),
+        deleteHallgatokMW(objRepo),
         redirectMW('/hallgatok')
     );
 
@@ -45,7 +45,7 @@ module.exports = function (app) {
      * Updates a hallgato in db
      */
     app.post('/hallgatok/update',
-        updateHallgatokMW(),
+        addHallgatokMW(objRepo),
         redirectMW('/hallgatok')
     );
 };

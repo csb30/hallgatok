@@ -10,7 +10,7 @@
     <script src="/client-side.js"></script>
 
     <title>
-        <%= filtered[0].hallgato %> számítógépei
+        <%= hallgato.name %> számítógépei
     </title>
 </head>
 
@@ -21,18 +21,18 @@
             <a href="../hallgatok" class="passive">Hallgatók</a>    <a href="../szamitogepek" class="passive">Számítógépek</a>
         </h1>
         <h1>
-            <%= filtered[0].hallgato %> számítógépei
+            <%= hallgato.name %> számítógépei
         </h1>
     </div>
 
     <div>
-        <form action="/hallgato/<%= hallgatoid %>/add" method="post">
-            <input type="text" name="hallgatoid" value="<%= hallgatoid %>" hidden>
+        <form action="/hallgato/<%= hallgato.id %>/add" method="post">
+            <input type="text" name="hallgatoid" value="<%= hallgato.id %>" hidden>
             <select class="form-select form-select-lg mb-3" aria-label="PC select" name="szamitogepid">
                 <option selected disabled>Válassz számítógépet</option>
-                <option value="1">Example PC1</option>
-                <option value="2">Example PC2</option>
-                <option value="3">Example PC3</option>
+                <% szabad.forEach(szamitogep => { %>
+                <option value="<%= szamitogep.id %>"><%= szamitogep.id %> | <%= szamitogep.cpu %> | <%= szamitogep.ram %></option>
+                <% }) %>
             </select>
 
             <button type="submit" class="btn mb-3">
@@ -52,13 +52,13 @@
             </tr>
             </thead>
             <tbody>
-            <% filtered.forEach(szamitogep => { %>
+            <% szamitogepek.forEach(szamitogep => { %>
             <tr>
                 <th scope="row"><%= szamitogep.id %></th>
                 <td><%= szamitogep.cpu %></td>
                 <td><%= szamitogep.ram %> GB</td>
                 <td>
-                    <a href="/hallgato/<%= hallgatoid %>/delete/<%= szamitogep.id %>"><span class="material-icons">delete</span></a>
+                    <a href="/hallgato/<%= hallgato.id %>/delete/<%= szamitogep.id %>"><span class="material-icons">delete</span></a>
                 </td>
             </tr>
             <% }) %>

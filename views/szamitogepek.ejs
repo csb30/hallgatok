@@ -43,8 +43,8 @@
             <tr id="row<%= szamitogep.id %>">
                 <th scope="row<%= szamitogep.id %>"><%= szamitogep.id %></th>
                 <td><%= szamitogep.cpu %></td>
-                <td><%= szamitogep.ram %></td>
-                <td><a href="../hallgato/<%= szamitogep.id %>"><%= szamitogep.hallgato %></a></td>
+                <td><%= szamitogep.ram %> GB</td>
+                <td><a href="<%= szamitogep._hallgato ? '../hallgato/' + szamitogep._hallgato.id : '' %>"><%= szamitogep._hallgato ? szamitogep._hallgato.name : '-' %></a></td>
                 <td>
                     <a href="#" onclick="update_item(<%= szamitogep.id %>)"><span class="material-icons">edit</span></a>
                     <a href="szamitogepek/delete/<%= szamitogep.id %>"><span class="material-icons">delete</span></a>
@@ -55,8 +55,8 @@
                     <input type="text" name="id" value="<%= szamitogep.id %>" hidden>
                     <th scope="row"><%= szamitogep.id %></th>
                     <td><input type="text" name="cpu" value="<%= szamitogep.cpu %>"></td>
-                    <td><input type="text" name="ram" value="<%= szamitogep.ram %>"></td>
-                    <td><%= szamitogep.hallgato %></td>
+                    <td><input type="number" name="ram" value="<%= szamitogep.ram %>"></td>
+                    <td><%= szamitogep._hallgato ? szamitogep._hallgato.name : '-' %></td>
                     <td>
                         <button class="material-icons" type="submit">check</button>
                         <button class="material-icons" type="button" onclick="close_update(<%= szamitogep.id %>)">close</button>
@@ -66,10 +66,10 @@
             <% }) %>
             <form action="/szamitogepek/add" method="post">
                 <tr id="new_item" hidden>
-                    <input type="text" name="id" value="<%= szamitogepek[szamitogepek.length-1].id+1 %>" hidden>
-                    <th scope="new_item"><%= szamitogepek[szamitogepek.length-1].id+1 %></th>
+                    <input type="text" name="id" value="<%= szamitogepek.length > 0 ? szamitogepek[szamitogepek.length-1].id+1 : 1 %>" hidden>
+                    <th scope="new_item"><%= szamitogepek.length > 0 ? szamitogepek[szamitogepek.length-1].id+1 : 1 %></th>
                     <td><input type="text" name="cpu"></td>
-                    <td><input type="text" name="ram"></td>
+                    <td><input type="number" name="ram"></td>
                     <td>-</td>
                     <td>
                         <button class="material-icons" type="submit">check</button>
